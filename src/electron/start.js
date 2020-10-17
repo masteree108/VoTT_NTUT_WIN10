@@ -1,9 +1,10 @@
 const net = require('net');
 const port = process.env.PORT ? (process.env.PORT - 100) : 3000;
-
+const detect_tag_thread = require('../../NTUT/services/detect_tag.js');
 process.env.ELECTRON_START_URL = `http://localhost:${port}`;
-
+const fs = require('fs');
 const client = new net.Socket();
+
 
 let startedElectron = false;
 const tryConnection = () => client.connect({ port: port }, () => {
@@ -17,6 +18,7 @@ const tryConnection = () => client.connect({ port: port }, () => {
         });
 
 		NTUT_version();
+		detect_tag_thread.run().catch(err => console.error(err));
 
         electron.stdout.on("data", (data) => {
             console.log(data);
@@ -50,13 +52,16 @@ const tryConnection = () => client.connect({ port: port }, () => {
 function NTUT_version(){
 	var execFile = require('child_process').execFile;
 	var parameters = ["--incognito"];
-	execFile('./NTUT/exe/NTUT_version.exe', parameters, function(err, data) {
-		if(err) {                                                                                                                                                 
-			console.error(err);
-			return;
-		}
-		console.log(data.toString());
-	});
+	exe_path = './NTUT/exe/NTUT_version.exe';
+	if (fs.existsSync(exe_path)) {
+		execFile(exe_path, parameters, function(err, data) {
+			if(err) {                                                                                                                                            
+				console.error(err);
+				return;
+			}
+			console.log(data.toString());
+		});
+	}
 }
 
 tryConnection();

@@ -70,7 +70,7 @@
         "electron:run:prod": "npm run webpack:prod && electron . --remote-debugging-port=9223",
         "electron:start:dev": "npm run webpack:dev && npm run electron-start",
         "electron:start:prod": "npm run webpack:prod && npm run electron-start",
-        "electron-start": "node src/electron/start",
+        "electron-start": "node --experimental-worker --max_old_space_size=4096 src/electron/start",
         "eject": "react-scripts eject",
         "release-pr": "./scripts/release-pr.sh",
         "release-web": "npm run build && npm run webpack:prod",
