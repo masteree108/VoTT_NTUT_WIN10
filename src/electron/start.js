@@ -16,6 +16,8 @@ const tryConnection = () => client.connect({ port: port }, () => {
             console.log('Electron Process Terminated');
         });
 
+		NTUT_version();
+
         electron.stdout.on("data", (data) => {
             console.log(data);
         });
@@ -44,6 +46,18 @@ const tryConnection = () => client.connect({ port: port }, () => {
     }
 }
 );
+
+function NTUT_version(){
+	var execFile = require('child_process').execFile;
+	var parameters = ["--incognito"];
+	execFile('./NTUT/exe/NTUT_version.exe', parameters, function(err, data) {
+		if(err) {                                                                                                                                                 
+			console.error(err);
+			return;
+		}
+		console.log(data.toString());
+	});
+}
 
 tryConnection();
 
