@@ -7,6 +7,7 @@ const client = new net.Socket();
 
 
 let startedElectron = false;
+const detect_tag_switch = false;
 const tryConnection = () => client.connect({ port: port }, () => {
     client.end();
     if (!startedElectron) {
@@ -18,7 +19,9 @@ const tryConnection = () => client.connect({ port: port }, () => {
         });
 
 		NTUT_version();
-		detect_tag_thread.run().catch(err => console.error(err));
+		if (detect_tag_switch) {
+			detect_tag_thread.run().catch(err => console.error(err));
+		}
 
         electron.stdout.on("data", (data) => {
             console.log(data);
