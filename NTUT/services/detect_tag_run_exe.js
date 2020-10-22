@@ -1,22 +1,10 @@
-const { parentPort } = require('worker_threads');
 const fs = require('fs');
 var now_time = "1";     
 var before_time= "0";   
 var execFile = require('child_process').execFile;
 var parameters = ["--incognito"];
          
-function open_path(path) {                                                                                                                                        
-	fs.open(path, 'r', (err, fd) => {
-       if (err) throw err;   
-         
-       read_file(path);      
-         
-       fs.close(fd, (err) => {
-           if (err) throw err;
-       });              
-   });   
-}        
-         
+      
 function get_time(data) {    
    var res = data.split(",");
    //console.log("res[2]");    
@@ -39,10 +27,9 @@ function read_file(path) {
    now_time = get_time(get_data);
    //console.log(now_time);    
    return already_run_check();
-                             
 }                            
                            
-function run_vott_tracker_exe_checek() {
+function check_path_and_run_vott_tracker_exe() {
 	log_path = '../../Drone_Project/Drone_Target/for_python_path.log';
 	exe_path = './NTUT/exe/vott_tracker.exe'
 	if (fs.existsSync(log_path)) {  
@@ -51,6 +38,7 @@ function run_vott_tracker_exe_checek() {
 				if (fs.existsSync(exe_path)) {
 					before_time = now_time;
 					execFile('./NTUT/exe/vott_tracker.exe', parameters, function(err, data) {
+   					console.log("vott_tracker.exe has been executed");    
 						if (err) {                                                                                  
 							console.error(err);
 							return;
@@ -69,14 +57,10 @@ function run_vott_tracker_exe_checek() {
 	}                                 
 }
 
-setInterval(() => {
-  run_vott_tracker_exe_checek()}, 100);
+module.exports.check_and_run = function check_and_run() {
+	console.log('Starting the vott_detect_tag service...');
+	setInterval(() => {
+  		check_path_and_run_vott_tracker_exe()}, 100);
+}
 
-/* parentPort.postMessage() is the send message function, 
-	it will send to below position(resovle) that thread creator
-	const worker = new Worker('./NTUT/services/run_exe.js');                                                                                                    
-	worker.on('message', (resolve) => { 
-		console.error("receive:", resolve); 
-	}); 	
-*/
-parentPort.postMessage("run exe()");
+

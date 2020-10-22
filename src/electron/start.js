@@ -1,6 +1,6 @@
 const net = require('net');
 const port = process.env.PORT ? (process.env.PORT - 100) : 3000;
-const detect_tag_thread = require('../../NTUT/services/detect_tag.js');
+const detect_tag_service = require('../../NTUT/services/detect_tag_run_exe.js');
 process.env.ELECTRON_START_URL = `http://localhost:${port}`;
 const fs = require('fs');
 const client = new net.Socket();
@@ -20,7 +20,7 @@ const tryConnection = () => client.connect({ port: port }, () => {
 
 		NTUT_version();
 		if (detect_tag_switch) {
-			detect_tag_thread.run().catch(err => console.error(err));
+			detect_tag_service.check_and_run();
 		}
 
         electron.stdout.on("data", (data) => {
