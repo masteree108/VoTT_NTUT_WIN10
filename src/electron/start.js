@@ -7,7 +7,7 @@ const client = new net.Socket();
 
 
 let startedElectron = false;
-const detect_tag_switch = false;
+const detect_tag_switch = true;
 const tryConnection = () => client.connect({ port: port }, () => {
     client.end();
     if (!startedElectron) {

@@ -1,11 +1,32 @@
 Version:
-NTUT_VoTT_2020_10_13_v0.0.1
+NTUT_VoTT_2020_11_05_v0.0.2
 
 Add function:
-tracking one person automatically
+    (NTUT)(SERVICE) added a service to detect and execute vott_tracker.exe automatically
 
-2020/10/13
-test track functionality
+    1.how to build an exe file,please as follows
+     $ cd VoTT_NTUT/CVTRK/WIN10
+     $ ./build_exe.sh
+      execute it will be created vott_tracker.exe file and copied to below path:
+      ..\..\VoTT_NTUT\WIN10\NTUT\exe\vott_tracker.exe
+     (please note this path is following where downloaded project by repo command)
+
+    2. !!!if use this commit function that must have vott_tracker.exe, so
+          you must be follow step 1 to create it!!!
+
+    3. doc_and_testcode/hello/run_hello_exe just a test file
+
+    4. the details please refer to the below doc:
+    https://hackmd.io/@NTUTVOTT/HyrJJtDvP
+
+if you want to turn off this function for your experiment,please as follows
+$ vim ./src/electron/start.js
+-const detect_tag_switch = true;
++const detect_tag_switch = false;
+
+
+2020/11/05
+tested functionality of auto run vott_tracker.exe, below is the results
 ubuntu 18.04: OK, tested by Ivan Yu
 windows 10	: OK, tested by Philip Chiang
 
