@@ -143,6 +143,9 @@ export class AssetService {
     public async getTrackTime(Time: string,metadata: IAssetMetadata){
         const fileName = `${metadata.asset.id}${constants.assetMetadataFileExtension}`;
         let date: Date = new Date(); 
+        toast.success("Tracking....", {
+            position: toast.POSITION.TOP_CENTER
+        });
         await this.storageProvider.writeText('../for_python_path.log', metadata.asset.path + ',' + fileName + ',' + date.getTime() + ',' + Time);
     }
     /**
@@ -178,7 +181,9 @@ export class AssetService {
             // await this.storageProvider.writeText('../for_python_path.log', metadata.asset.path + ',' + fileName + ',' + date.getTime());
             await this.storageProvider.writeText(fileName, JSON.stringify(metadata, null, 4));
             // alert("waiting for vott_tracker,if tracker finished please pressing ok");
-            toast.success("Enter the number what you want to track");
+            toast.success("Enter the number what you want to track", {
+                position: toast.POSITION.TOP_CENTER
+            });
         }else {
             // If the asset is no longer tagged, then it doesn't contain any regions
             // and the file is not required.
