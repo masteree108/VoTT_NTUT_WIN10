@@ -14,7 +14,7 @@ import { TFRecordsReader } from "../providers/export/tensorFlowRecords/tensorFlo
 import { FeatureType } from "../providers/export/tensorFlowRecords/tensorFlowBuilder";
 import { appInfo } from "../common/appInfo";
 import { encodeFileURI } from "../common/utils";
-
+import { toast } from "react-toastify";
 /**
  * @name - Asset Service
  * @description - Functions for dealing with project assets
@@ -134,6 +134,17 @@ export class AssetService {
         return await this.assetProvider.getAssets();
     }
 
+    // TODO:The tracktime & metadata from trackingTimeTool.tsx
+    /**
+     * Get tracking time and metadata
+     * @param Time 
+     * @param metadata 
+     */
+    public async getTrackTime(Time: string,metadata: IAssetMetadata){
+        const fileName = `${metadata.asset.id}${constants.assetMetadataFileExtension}`;
+        let date: Date = new Date(); 
+        await this.storageProvider.writeText('../for_python_path.log', metadata.asset.path + ',' + fileName + ',' + date.getTime() + ',' + Time);
+    }
     /**
      * Get a list of child assets associated with the current asset
      * @param rootAsset The parent asset to search
@@ -157,18 +168,18 @@ export class AssetService {
      */
     public async save(metadata: IAssetMetadata): Promise<IAssetMetadata> {
         Guard.null(metadata);
-
+        console.log(metadata);
         const fileName = `${metadata.asset.id}${constants.assetMetadataFileExtension}`;
-
         // Only save asset metadata if asset is in a tagged state
         // Otherwise primary asset information is already persisted in the project file.
         if (metadata.asset.state === AssetState.Tagged) {
 			let date: Date = new Date(); 
 			console.error(date.getTime()); 
-            await this.storageProvider.writeText('../for_python_path.log', metadata.asset.path + ',' + fileName + ',' + date.getTime());
+            // await this.storageProvider.writeText('../for_python_path.log', metadata.asset.path + ',' + fileName + ',' + date.getTime());
             await this.storageProvider.writeText(fileName, JSON.stringify(metadata, null, 4));
-			alert("waiting for vott_tracker,if tracker finished please pressing ok");
-        } else {
+            // alert("waiting for vott_tracker,if tracker finished please pressing ok");
+            toast.success("Enter the number what you want to track");
+        }else {
             // If the asset is no longer tagged, then it doesn't contain any regions
             // and the file is not required.
             try {
