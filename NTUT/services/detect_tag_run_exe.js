@@ -30,7 +30,7 @@ function read_file(path) {
 }                            
                            
 function check_path_and_run_vott_tracker_exe() {
-	log_path = '../../Drone_Project/Drone_Target/for_python_path.log';
+	log_path = '../../../Drone_Target/for_python_path.log';
 	exe_path = './NTUT/exe/vott_tracker.exe'
 	if (fs.existsSync(log_path)) {  
 		try {                 
