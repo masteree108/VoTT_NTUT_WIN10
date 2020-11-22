@@ -2,8 +2,6 @@ const fs = require('fs');
 var now_time = "1";     
 var before_time= "0";   
 var execFile = require('child_process').execFile;
-var parameters = ["--incognito"];
-         
       
 function get_time(data) {    
    var res = data.split(",");
@@ -30,11 +28,14 @@ function read_file(path) {
 }                            
                            
 function check_path_and_run_vott_tracker_exe() {
-	log_path = '../../../Drone_Target/for_python_path.log';
+	vott_source_info = '../../../Drone_Target/vott_source_info.tmp';
+	vott_target_path = '../../../Drone_Target/vott_target_path.json';
 	exe_path = './NTUT/exe/vott_tracker.exe'
-	if (fs.existsSync(log_path)) {  
+	var parameters = [vott_source_info, vott_target_path];
+
+	if (fs.existsSync(vott_source_info) & fs.existsSync(vott_target_path)) {  
 		try {                 
-			if (read_file(log_path)) {
+			if (read_file(vott_source_info)) {
 				if (fs.existsSync(exe_path)) {
 					before_time = now_time;
 					execFile('./NTUT/exe/vott_tracker.exe', parameters, function(err, data) {

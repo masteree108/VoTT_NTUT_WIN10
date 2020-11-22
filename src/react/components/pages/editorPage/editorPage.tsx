@@ -27,7 +27,7 @@ import CanvasHelpers from "./canvasHelpers";
 import "./editorPage.scss";
 import EditorSideBar from "./editorSideBar";
 import { EditorToolbar } from "./editorToolbar";
-import { TrackingTimeTool } from "./trackingTimeTool";
+import { TrackingTool } from "./trackingTool";
 import Alert from "../../common/alert/alert";
 import Confirm from "../../common/confirm/confirm";
 import { ActiveLearningService } from "../../../../services/activeLearningService";
@@ -212,7 +212,7 @@ export default class EditorPage extends React.Component<IEditorPageProps, IEdito
                                     actions={this.props.actions}
                                     onToolbarItemSelected={this.onToolbarItemSelected} />
                             </div>
-                            <TrackingTimeTool
+                            <TrackingTool
                                 project = {this.props.project}
                                 metadata = {this.state.selectedAsset}
                             />   

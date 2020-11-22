@@ -152,6 +152,18 @@ export default class ProjectService implements IProjectService {
         return (duplicateProjects !== undefined);
     }
 
+    /**
+     * Save the target path for NTUT tracking object
+     * @param project - Project to save
+     */
+    public async saveTargetPath(project: IProject) {
+        const storageProvider = StorageProviderFactory.createFromConnection(project.targetConnection);
+		var msg = storageProvider;
+		msg["project_name"] = `${project.name}`
+ 		await storageProvider.writeText('../vott_target_path.json', JSON.stringify(msg, null, 4));
+    }
+    
+    
     private async saveExportSettings(project: IProject): Promise<void> {
         if (!project.exportFormat || !project.exportFormat.providerType) {
             return Promise.resolve();

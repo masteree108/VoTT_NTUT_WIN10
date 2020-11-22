@@ -134,7 +134,7 @@ export class AssetService {
         return await this.assetProvider.getAssets();
     }
 
-    // TODO:The tracktime & metadata from trackingTimeTool.tsx
+    // TODO:The tracktime & metadata from trackingTool.tsx
     /**
      * Get tracking time and metadata
      * @param Time 
@@ -146,7 +146,7 @@ export class AssetService {
         toast.success("Tracking....", {
             position: toast.POSITION.TOP_CENTER
         });
-        await this.storageProvider.writeText('../for_python_path.log', metadata.asset.path + ',' + fileName + ',' + date.getTime() + ',' + Time);
+        await this.storageProvider.writeText('../vott_source_info.tmp', metadata.asset.path + ',' + fileName + ',' + date.getTime() + ',' + Time);
     }
     /**
      * Get a list of child assets associated with the current asset
@@ -178,9 +178,7 @@ export class AssetService {
         if (metadata.asset.state === AssetState.Tagged) {
 			let date: Date = new Date(); 
 			console.error(date.getTime()); 
-            // await this.storageProvider.writeText('../for_python_path.log', metadata.asset.path + ',' + fileName + ',' + date.getTime());
             await this.storageProvider.writeText(fileName, JSON.stringify(metadata, null, 4));
-            // alert("waiting for vott_tracker,if tracker finished please pressing ok");
             toast.success("Enter the number what you want to track", {
                 position: toast.POSITION.TOP_CENTER
             });
