@@ -176,8 +176,6 @@ export class AssetService {
         // Only save asset metadata if asset is in a tagged state
         // Otherwise primary asset information is already persisted in the project file.
         if (metadata.asset.state === AssetState.Tagged) {
-			let date: Date = new Date(); 
-			console.error(date.getTime()); 
             await this.storageProvider.writeText(fileName, JSON.stringify(metadata, null, 4));
             toast.success("Enter the number what you want to track", {
                 position: toast.POSITION.TOP_CENTER

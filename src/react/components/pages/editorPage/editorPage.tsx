@@ -472,6 +472,11 @@ export default class EditorPage extends React.Component<IEditorPageProps, IEdito
             await this.props.actions.saveAssetMetadata(this.props.project, assetMetadata);
         }
 
+        // updat asset metadata if the data is NTUT vott_tracker.exe tracked
+		if (assetMetadata.asset.state === 3) {
+            await this.props.actions.saveAssetMetadata(this.props.project, assetMetadata);
+        }
+
         await this.props.actions.saveProject(this.props.project);
 
         const assetService = new AssetService(this.props.project);
