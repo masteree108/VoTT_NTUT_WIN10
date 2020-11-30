@@ -144,7 +144,7 @@ export class AssetService {
         const fileName = `${metadata.asset.id}${constants.assetMetadataFileExtension}`;
         let date: Date = new Date(); 
         toast.success("Tracking....", {
-            position: toast.POSITION.TOP_CENTER
+            position: toast.POSITION.TOP_LEFT
         });
         await this.storageProvider.writeText('../vott_source_info.tmp', metadata.asset.path + ',' + fileName + ',' + date.getTime() + ',' + Time);
     }
@@ -178,7 +178,7 @@ export class AssetService {
         if (metadata.asset.state === AssetState.Tagged) {
             await this.storageProvider.writeText(fileName, JSON.stringify(metadata, null, 4));
             toast.success("Enter the number what you want to track", {
-                position: toast.POSITION.TOP_CENTER
+                position: toast.POSITION.TOP_LEFT
             });
         }else {
             // If the asset is no longer tagged, then it doesn't contain any regions
