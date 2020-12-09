@@ -1,34 +1,52 @@
 Version:
-NTUT_VoTT_2020_11_05_v0.0.2
 
-Add function:
-    (NTUT)(SERVICE) added a service to detect and execute vott_tracker.exe automatically
+    NTUT_VoTT_2020_12_09_v0.0.3
 
-    1.how to build an exe file,please as follows
-     $ cd VoTT_NTUT/CVTRK/WIN10
-     $ ./build_exe.sh
-      execute it will be created vott_tracker.exe file and copied to below path:
-      ..\..\VoTT_NTUT\WIN10\NTUT\exe\vott_tracker.exe
-     (please note this path is following where downloaded project by repo command)
+        Add funtcion:
+            (NTUT)(TOOL) Add a new tool , user can enter the number of seconds to track the objects
+            
+            refer:
+                (NTUT)(SERVICE) add a input and button component for typing track time and executing vott_tracker.exe
+                (NTUT)(SERVICE) adjust the toast position and add Tracking message
+                (NTUT)(PATH) move project to another place so modified relative path in python and vott program
+                (NTUT)(TMP) rename for_python_path.log and add  vott_target_path.tmp
+                (NTUT)(SERVICE) add if condition for writing data that vott_tracker tracked into project memory
+                (NTUT)(NOTIFICATION) change the toast position, TOP_CENTER => TOP_LEFT
+        
+        請參考最下方測試結果
 
-    2. !!!if use this commit function that must have vott_tracker.exe, so
-          you must be follow step 1 to create it!!!
+================================================================================================================================================================
+    
+    NTUT_VoTT_2020_11_05_v0.0.2
 
-    3. doc_and_testcode/hello/run_hello_exe just a test file
+        Add function:
+            (NTUT)(SERVICE) added a service to detect and execute vott_tracker.exe automatically
 
-    4. the details please refer to the below doc:
-    https://hackmd.io/@NTUTVOTT/HyrJJtDvP
+            1.how to build an exe file,please as follows
+            $ cd VoTT_NTUT/CVTRK/WIN10
+            $ ./build_exe.sh
+            execute it will be created vott_tracker.exe file and copied to below path:
+            ..\..\VoTT_NTUT\WIN10\NTUT\exe\vott_tracker.exe
+            (please note this path is following where downloaded project by repo command)
+
+            2. !!!if use this commit function that must have vott_tracker.exe, so
+                you must be follow step 1 to create it!!!
+
+            3. doc_and_testcode/hello/run_hello_exe just a test file
+
+            4. the details please refer to the below doc:
+            https://hackmd.io/@NTUTVOTT/HyrJJtDvP
 
 if you want to turn off this function for your experiment,please as follows
 $ vim ./src/electron/start.js
 -const detect_tag_switch = true;
 +const detect_tag_switch = false;
 
-
-2020/11/05
-tested functionality of auto run vott_tracker.exe, below is the results
-ubuntu 18.04: OK, tested by Ivan Yu
-windows 10	: OK, tested by Philip Chiang
+測試結果：
+    2020/12/09
+    tested functionality of auto run vott_tracker.exe, below is the results
+    ubuntu 18.04: OK, tested by Ivan Yu
+    windows 10	: OK, tested by Philip Chiang
 
 Dependence:
  Ubuntu 18.04:
