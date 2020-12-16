@@ -4,12 +4,13 @@ import {
 } from "electron";
 import { IpcMainProxy } from "./common/ipcMainProxy";
 import LocalFileSystem from "./providers/storage/localFileSystem";
-
+const runVottTracker = require('../../NTUT/services/run_vott_tracker.js');
+const runTrackerSwitch = true;
+const fs = require('fs');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow: BrowserWindow;
 let ipcMainProxy: IpcMainProxy;
-
 function createWindow() {
     const windowOptions: BrowserWindowConstructorOptions = {
         width: 1024,
@@ -25,6 +26,10 @@ function createWindow() {
         windowOptions.webPreferences = {
             webSecurity: false,
         };
+    }
+
+    if (runTrackerSwitch) {
+	runVottTracker.check_and_run();
     }
 
     mainWindow = new BrowserWindow(windowOptions);
@@ -123,6 +128,7 @@ function registerContextMenu(browserWindow: BrowserWindow): void {
     const menu = Menu.buildFromTemplate(menuItems);
     Menu.setApplicationMenu(menu);
 }
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

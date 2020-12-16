@@ -1,6 +1,5 @@
 const net = require('net');
 const port = process.env.PORT ? (process.env.PORT - 100) : 3000;
-const detect_tag_service = require('../../NTUT/services/detect_tag_run_exe.js');
 process.env.ELECTRON_START_URL = `http://localhost:${port}`;
 const fs = require('fs');
 const client = new net.Socket();
@@ -18,10 +17,7 @@ const tryConnection = () => client.connect({ port: port }, () => {
             console.log('Electron Process Terminated');
         });
 
-		NTUT_version();
-		if (detect_tag_switch) {
-			detect_tag_service.check_and_run();
-		}
+	show_NTUT_VoTT_version();
 
         electron.stdout.on("data", (data) => {
             console.log(data);
@@ -52,7 +48,7 @@ const tryConnection = () => client.connect({ port: port }, () => {
 }
 );
 
-function NTUT_version(){
+function show_NTUT_VoTT_version(){
 	var execFile = require('child_process').execFile;
 	var parameters = ["--incognito"];
 	exe_path = './NTUT/exe/NTUT_version.exe';

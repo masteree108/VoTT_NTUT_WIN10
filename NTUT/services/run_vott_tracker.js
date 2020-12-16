@@ -28,8 +28,8 @@ function read_file(path) {
 }                            
                            
 function check_path_and_run_vott_tracker_exe() {
-	vott_source_info = '../../../Drone_Target/vott_source_info.tmp';
-	vott_target_path = '../../../Drone_Target/vott_target_path.json';
+	vott_source_info = 'C:/Drone_Target/vott_source_info.tmp';
+	vott_target_path = 'C:/Drone_Target/vott_target_path.json';
 	exe_path = './NTUT/exe/vott_tracker.exe'
 	var parameters = [vott_source_info, vott_target_path];
 
