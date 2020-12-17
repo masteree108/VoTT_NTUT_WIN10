@@ -173,13 +173,16 @@ export class AssetService {
         Guard.null(metadata);
         console.log(metadata);
         const fileName = `${metadata.asset.id}${constants.assetMetadataFileExtension}`;
+	const toastSwitch = false;
         // Only save asset metadata if asset is in a tagged state
         // Otherwise primary asset information is already persisted in the project file.
         if (metadata.asset.state === AssetState.Tagged) {
             await this.storageProvider.writeText(fileName, JSON.stringify(metadata, null, 4));
-            toast.success("Enter the number what you want to track", {
+	    if (toastSwitch) {
+            	toast.success("Enter the number (of frames) for tracking", {
                 position: toast.POSITION.TOP_LEFT
-            });
+            	});
+	    }
         }else {
             // If the asset is no longer tagged, then it doesn't contain any regions
             // and the file is not required.
