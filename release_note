@@ -1,8 +1,25 @@
 Version:
 
+    NTUT_VoTT_2020_12_22_v0.0.4
+
+        Add funtcion:
+        
+            (NTUT)(EXE) Package the program into an executable file
+            
+            refer:
+                (NTUT)(SCRIPT) modify package_NTUT_VoTT.sh to remove some redundant command
+                (NTUT)(SCRIPT) add a script to package relative file of NTUT tracker after building vott.exe success
+                (NTUT)(NOTIFITCATION) disabled toast:enter number what you want
+                (NTUT)(SERVICE) move program about executing vott_tracker.exe into main.ts
+
+================================================================================================================================================================
+
+Version:
+
     NTUT_VoTT_2020_12_09_v0.0.3
 
         Add funtcion:
+
             (NTUT)(TOOL) Add a new tool , user can enter the number of seconds to track the objects
             
             refer:
@@ -16,10 +33,13 @@ Version:
         請參考最下方測試結果
 
 ================================================================================================================================================================
-    
+
+Version:
+
     NTUT_VoTT_2020_11_05_v0.0.2
 
         Add function:
+
             (NTUT)(SERVICE) added a service to detect and execute vott_tracker.exe automatically
 
             1.how to build an exe file,please as follows
@@ -42,9 +62,26 @@ $ vim ./src/electron/start.js
 -const detect_tag_switch = true;
 +const detect_tag_switch = false;
 
+
+        請參考最下方測試結果
+
+================================================================================================================================================================
+
+Information:
+
+    - Build VoTT.exe:
+
+            1. This command will be created "releases" folder that includes about vott.exe files
+                $ npm run release
+            
+            2. hen you use below command to build vott.exe please run below command to package NTUT_VoTT folder
+                $ cd ./NTUT/scripts/
+                $ ./package_NTUT_VoTT.sh
+
 測試結果：
-    2020/12/09
-    tested functionality of auto run vott_tracker.exe, below is the results
+
+    2020/12/22
+    tested build the exe file, below is the results
     ubuntu 18.04: OK, tested by Ivan Yu
     windows 10	: OK, tested by Philip Chiang
 
