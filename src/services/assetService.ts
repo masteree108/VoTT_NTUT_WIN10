@@ -146,7 +146,16 @@ export class AssetService {
         toast.success("Tracking....", {
             position: toast.POSITION.TOP_LEFT
         });
-        await this.storageProvider.writeText('../vott_source_info.tmp', metadata.asset.path + ',' + fileName + ',' + date.getTime() + ',' + Time);
+        var jsonFile = metadata.asset.path.split("#")[0].split(":");
+        jsonFile = jsonFile.slice(1, jsonFile.length);
+        var jsonFileContent = {
+            "file": jsonFile.join(":"),
+            "t":metadata.asset.path.split("#")[1].split("=")[1],
+            "fileName":fileName,
+            "timestamp":date.getTime(),
+            "time":Time
+        }
+        await this.storageProvider.writeText('../vott_source_info.json',JSON.stringify(jsonFileContent));
     }
     /**
      * Get a list of child assets associated with the current asset

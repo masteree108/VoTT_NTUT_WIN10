@@ -4,10 +4,7 @@ var before_time= "0";
 var execFile = require('child_process').execFile;
       
 function get_time(data) {    
-   var res = data.split(",");
-   //console.log("res[2]");    
-   //console.log(res[2]);      
-   return res[2];
+   return  JSON.parse(data)["timestamp"];
 }        
          
 function already_run_check() {
@@ -28,7 +25,7 @@ function read_file(path) {
 }                            
                            
 function check_path_and_run_vott_tracker_exe() {
-	vott_source_info = 'C:/Drone_Target/vott_source_info.tmp';
+	vott_source_info = 'C:/Drone_Target/vott_source_info.json';
 	vott_target_path = 'C:/Drone_Target/vott_target_path.json';
 	exe_path = './NTUT/exe/vott_tracker.exe'
 	var parameters = [vott_source_info, vott_target_path];
