@@ -9,7 +9,8 @@ if [ -d "../../releases" ]; then
 	mkdir -p NTUT/exe
 	cp ../../NTUT/exe/vott_tracker.exe ./NTUT/exe/
 	cd ../../
-	mv NTUT_VoTT ../../../
+	cp -af NTUT_VoTT ../../../
+	rm -r NTUT_VoTT
 else
 	echo "Directory ../../../releases does not exists"
 fi
