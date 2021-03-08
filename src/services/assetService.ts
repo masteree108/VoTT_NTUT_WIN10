@@ -140,7 +140,7 @@ export class AssetService {
      * @param Time 
      * @param metadata 
      */
-    public async getTrackTime(Time: string,metadata: IAssetMetadata){
+    public async getTrackTime(time: string, fps: string, metadata: IAssetMetadata){
         const fileName = `${metadata.asset.id}${constants.assetMetadataFileExtension}`;
         let date: Date = new Date(); 
         toast.success("Tracking....", {
@@ -153,7 +153,8 @@ export class AssetService {
             "t":metadata.asset.path.split("#")[1].split("=")[1],
             "fileName":fileName,
             "timestamp":date.getTime(),
-            "time":Time
+            "time":time,
+            "fps":fps
         }
         await this.storageProvider.writeText('../vott_source_info.json',JSON.stringify(jsonFileContent));
     }
