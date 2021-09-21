@@ -1,5 +1,14 @@
 Version:
 
+	NTUT_VoTT_2021_09_21_v0.0.5
+       new commit:
+           (NTUT)(SERVICE and TOOL) add new parameter FPS & write into vott_source_info.json
+           (NTUT)(WRITE_JSON_CLASS) write vott_tracker to json type => so CVTRK process can easily to read those infomation
+
+================================================================================================================================================================
+
+Version:
+
     NTUT_VoTT_2020_12_22_v0.0.4
 
         Add funtcion:
@@ -63,8 +72,7 @@ $ vim ./src/electron/start.js
 +const detect_tag_switch = false;
 
 
-        請參考最下方測試結果
-
+Test Result please refer below section
 ================================================================================================================================================================
 
 Information:
@@ -74,19 +82,19 @@ Information:
             1. This command will be created "releases" folder that includes about vott.exe files
                 $ npm run release
             
-            2. hen you use below command to build vott.exe please run below command to package NTUT_VoTT folder
+            2. then you can use below command to build vott.exe please run below command to package NTUT_VoTT folder
                 $ cd ./NTUT/scripts/
                 $ ./package_NTUT_VoTT.sh
 
-測試結果：
+Test Result:
 
-    2020/12/22
+    2021/09/21
     tested build the exe file, below is the results
-    ubuntu 18.04: OK, tested by Ivan Yu
+    ubuntu 20.04: OK, tested by Ivan Yu
     windows 10	: OK, tested by Philip Chiang
 
 Dependence:
- Ubuntu 18.04:
+ Ubuntu 20.04:
   VoTT_NTUT/UBU18/release_note
   CVTRK/UBU18/release_note
 
