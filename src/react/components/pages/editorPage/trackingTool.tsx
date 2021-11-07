@@ -19,7 +19,8 @@ export class TrackingTool extends React.Component <ITrackingProps>{
     
     public state = {
         trackingTime : 0,
-        fps:0
+        fps:0,
+        bbox_calibration:true
     };
     trackTimeProp: number;
     assetService = new AssetService(this.props.project);
@@ -40,6 +41,11 @@ export class TrackingTool extends React.Component <ITrackingProps>{
         fontFamily: 'Trebuchet MS',
         borderColor: 'transparent',
     };
+    checkboxStyle = {
+        margin:'5px',
+        width: '15px',
+        borderRadius:2
+    };
     public render() {
         return (
             <div className="input-trackingbox" >
@@ -57,6 +63,7 @@ export class TrackingTool extends React.Component <ITrackingProps>{
                     <option value="5">5 FPS</option>
                 </select>
                 <button style={this.buttonStyle} onClick={this.sendTime} >Auto Track</button>
+                <label> <input type="checkbox" style={this.checkboxStyle} defaultChecked={true} onChange={e => this.setState({ bbox_calibration: e.target.checked })}/> bbox_calibration </label>
             </div>
         );
     }
@@ -65,7 +72,7 @@ export class TrackingTool extends React.Component <ITrackingProps>{
         this.setState({trackingTime: event.target.value});
         console.error(this.props.metadata);
         console.log(this.state.fps);
-        this.assetService.getTrackTime(this.state.trackingTime.toString(), this.state.fps.toString(), this.props.metadata);
+        this.assetService.getTrackTime(this.state.trackingTime.toString(), this.state.fps.toString(), this.state.bbox_calibration, this.props.metadata);
 		this.projectService.saveTargetPath(this.props.project);
         console.warn("Tracking Time Tool: "  + this.state.trackingTime);
         this.state.trackingTime = 0;
