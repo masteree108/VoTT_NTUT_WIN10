@@ -140,7 +140,7 @@ export class AssetService {
      * @param Time 
      * @param metadata 
      */
-    public async getTrackTime(time: string, fps: string, bbox_calibration:boolean, metadata: IAssetMetadata){
+    public async getTrackTime(time: string, fps: string, bbox_calibration:boolean, metadata: IAssetMetadata, strength:number){
         const fileName = `${metadata.asset.id}${constants.assetMetadataFileExtension}`;
         let date: Date = new Date(); 
         toast.success("Tracking....", {
@@ -158,7 +158,8 @@ export class AssetService {
             "timestamp":date.getTime(),
             "time":time,
             "fps":fps,
-            "bbox_calibration":bbox_calibration
+            "bbox_calibration":bbox_calibration,
+			"strength":strength
         }
         await this.storageProvider.writeText('../vott_source_info.json',JSON.stringify(jsonFileContent));
     }
