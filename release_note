@@ -1,5 +1,14 @@
 Version:
 
+    NTUT_VoTT_2021_11_21_v0.0.6
+		new commit:
+        (NTUT)(SERVICE and TOOL) add three level about bbox calibration, save those data into vott_source_info.json
+================================================================================================================================================================
+
+
+
+Version:
+
 	NTUT_VoTT_2021_09_21_v0.0.5
        new commit:
            (NTUT)(SERVICE and TOOL) add new parameter FPS & write into vott_source_info.json
@@ -88,7 +97,7 @@ Information:
 
 Test Result:
 
-    2021/09/21
+    2021/11/21
     tested build the exe file, below is the results
     ubuntu 20.04: OK, tested by Ivan Yu
     windows 10	: OK, tested by Philip Chiang
