@@ -8,6 +8,7 @@ if [ -d "../../releases" ]; then
 	cd WIN10
 	mkdir -p NTUT/exe
 	cp ../../NTUT/exe/vott_tracker.exe ./NTUT/exe/
+	cp -af ../../NTUT/yolo-coco_v3 ./NTUT/
 	cd ../../
 	cp -af NTUT_VoTT ../../../
 	rm -r NTUT_VoTT
