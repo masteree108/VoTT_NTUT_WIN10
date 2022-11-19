@@ -40,6 +40,11 @@ export class TrackingTool extends React.Component <ITrackingProps>{
         width: '80px',
         borderRadius:5
     };
+    selectStyle2 = {
+        margin:'5px',
+        width: '150px',
+        borderRadius:5
+    };
     buttonStyle = {
         background: 'linear-gradient(#91919e,#8c8c8c)',
         borderRadius: '5px',
@@ -74,10 +79,10 @@ export class TrackingTool extends React.Component <ITrackingProps>{
                     
                     {/* ↓ 是if判斷寫法 若有勾選bbox_calibration 則會出現強中弱選項 */}
                     {this.state.bbox_calibration == true &&
-                        <select style={this.selectStyle} value={this.state.strength} onChange={e => this.setState({ strength: e.target.value })}>strength
-                            <option value="0">weak</option>
-                            <option value="1">medium</option>
-                            <option value="2">strong</option>
+                        <select style={this.selectStyle2} value={this.state.strength} onChange={e => this.setState({ strength: e.target.value })}>strength
+                            <option value="0">1*1 time</option>
+                            <option value="1">Overlap 3*3 times</option>
+                            <option value="2">Overlap 6*6 times</option>
                         </select>
                     }
                 </div>
