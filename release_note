@@ -1,5 +1,10 @@
 Version:
 
+    NTUT_VoTT_2022_11/19_v0.0.8
+	NTUT)(SERVICE and TOOL) Modifyr bbox calibration label
+================================================================================================================================================================
+Version:
+
     NTUT_VoTT_2022_04_25_v0.0.7
 	for CVTRK update new commits
 ================================================================================================================================================================
@@ -104,10 +109,9 @@ Information:
 
 Test Result:
 
-    2022/04/25
+    2022/11/19
     tested build the exe file, below is the results
-    ubuntu 20.04: OK, tested by Ivan Yu
-    windows 10	: OK, tested by Philip Chiang
+    windows 10	: OK, tested by Dennis He
 
 Dependence:
  Ubuntu 20.04:
